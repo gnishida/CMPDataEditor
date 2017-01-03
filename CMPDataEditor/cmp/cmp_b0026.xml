@@ -11,16 +11,6 @@
     </object>
     <object>
         <points>
-            <x>0.49215</x>
-            <x>0.99857</x>
-            <y>0.025391</y>
-            <y>1</y>
-        </points>
-        <label>2</label>
-        <labelname>facade</labelname>
-    </object>
-    <object>
-        <points>
             <x>0.21969</x>
             <x>0.28959</x>
             <y>0.09082</y>

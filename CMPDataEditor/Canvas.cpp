@@ -80,7 +80,11 @@ void Canvas::mousePressEvent(QMouseEvent* e) {
 				if (e->x() < objects[i].x1 * resizedImage.width() - delta || e->x() > objects[i].x2 * resizedImage.width() + delta) continue;
 				if (e->y() < objects[i].y1 * resizedImage.height() - delta || e->y() > objects[i].y2 * resizedImage.height() + delta) continue;
 
-				// check top left corner
+				if (objects[i].labelname == "facade") {
+					if (e->x() > objects[i].x1 * resizedImage.width() + delta && e->x() < objects[i].x2 * resizedImage.width() - delta
+						&& e->y() > objects[i].y1 * resizedImage.width() + delta && e->y() < objects[i].y2 * resizedImage.width() - delta) continue;
+				}
+
 				float dist = SQR(e->x() - objects[i].x1 * resizedImage.width()) + SQR(e->y() - objects[i].y1 * resizedImage.height());
 				if (dist < min_dist) {
 					min_dist = dist;
@@ -110,15 +114,6 @@ void Canvas::mousePressEvent(QMouseEvent* e) {
 					min_dist = dist;
 					selectedIndex = i;
 					selectedVertex = BOTTOM_RIGHT;
-				}
-			}
-		}
-
-		// for facade, we check the distance more strictly
-		if (selectedIndex >= 0 && selectedIndex < objects.size()) {
-			if (objects[selectedIndex].labelname == "facade") {
-				if (min_dist > SQR(delta)) {
-					selectedIndex = -1;
 				}
 			}
 		}
